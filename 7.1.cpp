@@ -24,7 +24,6 @@ void start(const std::vector<int> &field, std::size_t n, std::size_t m) {
 
   std::cout << "Max coins: " << dp[n - 1][m - 1] << "\n";
 
-  // Восстанавливаем путь
   std::size_t i = n - 1, j = m - 1;
   std::string result_path = "";
   while (i > 0 || j > 0) {

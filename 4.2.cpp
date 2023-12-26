@@ -59,7 +59,6 @@ public:
             if (queue[point].idx == data.idx) {
                 queue[point].value += data.value;
                 heapify_up(point);
-                heapify_down(point);
                 break;
             } else {
                 point++;

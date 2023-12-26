@@ -3,9 +3,10 @@
 
 struct Node {
   int data;
+  int min;  
   Node* next;
 
-  explicit Node(int val) : data(val), next(nullptr) {}
+  explicit Node(int val, int minimum) : data(val), min(minimum), next(nullptr) {}
 };
 
 class LinkedList {
@@ -16,7 +17,8 @@ class LinkedList {
   LinkedList() : head(nullptr) {}
 
   void insert(int value) {
-    Node* newNode = new Node(value);
+    int minimum = (head ? std::min(value, head->min) : value);
+    Node* newNode = new Node(value, minimum);
     newNode->next = head;
     head = newNode;
   }
@@ -37,20 +39,10 @@ class LinkedList {
   }
 
   [[nodiscard]] int getMin() {
-    if (!head) {
-      return INT_MIN;
+    if (head) {
+      return head->min;
     }
-
-    int minVal = head->data;
-    Node* current = head->next;
-
-    while (current) {
-      if (current->data < minVal) {
-        minVal = current->data;
-      }
-      current = current->next;
-    }
-    return minVal;
+    return INT_MIN;
   }
 };
 
